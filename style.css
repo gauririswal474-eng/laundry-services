@@ -1,0 +1,164 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  color: #4a5560;
+  background: #fff;
+  overflow-x: hidden;
+}
+
+/* ---------- Navbar ---------- */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 8%;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 600;
+  color: #2d3640;
+}
+
+.navbar ul {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #4a5560;
+  font-size: 15px;
+  transition: color 0.2s;
+}
+
+.navbar a:hover {
+  color: #0aa5ff;
+}
+
+.username {
+  background: #e6f5ff;
+  color: #0aa5ff;
+  border: none;
+  padding: 14px 22px;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 70px 10% 90px;
+  min-height: calc(100vh - 80px);
+}
+
+.hero-text {
+  max-width: 480px;
+}
+
+.hero-text h1 {
+  font-size: 40px;
+  line-height: 1.4;
+  font-weight: 700;
+  color: #4a5560;
+}
+
+.hero-text h1 span {
+  color: #0aa5ff;
+}
+
+.hero-text p {
+  margin: 16px 0 36px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #a2a9b0;
+}
+
+.cta {
+  background: linear-gradient(135deg, #00a2ff, #19b4ff);
+  color: #fff;
+  border: none;
+  padding: 18px 34px;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cta:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 12px 24px rgba(0, 162, 255, 0.35);
+}
+
+/* ---------- Hero image animation ---------- */
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 380px;
+}
+
+/* 1) ORBIT: the image travels around a circular path while staying upright.
+      Rotating the wrapper and counter-rotating the child keeps it from spinning. */
+.orbit {
+  width: 300px;
+  animation: orbit 8s linear infinite;
+}
+
+@keyframes orbit {
+  from { transform: rotate(0deg)   translateX(40px) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(40px) rotate(-360deg); }
+}
+
+/* 2) SQUEEZE: at certain points the image is squashed and stretched
+      like a washing machine pressing and releasing. */
+.squeeze {
+  transform-origin: center bottom;
+  animation: squeeze 4s ease-in-out infinite;
+}
+
+@keyframes squeeze {
+  0%   { transform: scale(1, 1); }
+  20%  { transform: scale(1.12, 0.88); }  /* squashed wide  */
+  40%  { transform: scale(0.9, 1.1); }    /* squeezed tall  */
+  60%  { transform: scale(1.1, 0.9); }
+  80%  { transform: scale(0.95, 1.05); }
+  100% { transform: scale(1, 1); }
+}
+
+.squeeze img {
+  width: 100%;
+  display: block;
+  filter: drop-shadow(0 20px 20px rgba(0, 80, 160, 0.18));
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  .orbit, .squeeze { animation: none; }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 800px) {
+  .navbar ul { display: none; }
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 50px 6%;
+  }
+  .hero-text h1 { font-size: 30px; }
+  .orbit { width: 240px; }
+}
